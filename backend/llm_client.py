@@ -1,8 +1,11 @@
 import requests
 from config import OLLAMA_URL, MODEL_NAME
+from retriever import retrieve_context
 
 
 def ask_llm(question):
+    context = retrieve_context(question)
+    
     system_prompt = f"""
         You are the University Student Support Assistant for the University of Dar es Salaam (UDSM).
 
@@ -26,8 +29,9 @@ def ask_llm(question):
 
         "I'm sorry, I can only answer questions related to University of Dar es Salaam student support services."
 
-        Student question:
-        {question}
+        context: {context}
+        
+        Student question: {question}
         """
 
     payload = {

@@ -1,3 +1,4 @@
+from retriever import retrieve_context
 from fastapi import FastAPI
 from fastapi import HTTPException
 from pydantic import BaseModel
@@ -40,6 +41,7 @@ def submit_question(request: QuestionRequest):
         return {"answer": answer}
     except Exception as e:
         logging.error(f"Error occurred while processing question: {str(e)}")
+        print(e)
         raise HTTPException(status_code=500, detail="Internal server error")
 
 
