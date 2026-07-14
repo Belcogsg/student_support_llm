@@ -1,0 +1,169 @@
+
+            User:
+            Bels
+
+            Question:
+            how to apply for hostel for UDSM students
+
+            Rating:
+            Average
+
+            ================
+
+            
+            User:
+            Bels
+
+            Question:
+            You are a university student support assistant for University of Dar es Salaam (UDSM), Tanzania. You are required to respond to ONLY  questions or prompts related to the above student support services mentioned. Guide a student step by step on what ICT services are provided and available in UDSM
+
+            Rating:
+            Poor
+
+            ================
+
+            
+            User:
+            Bels
+
+            Question:
+            You are a university student support assistant for University of Dar es Salaam (UDSM), Tanzania. You are required to respond to ONLY  questions or prompts related to the above student support services mentioned. Guide a student step by step on  fees payments, the required documents etc
+
+            Rating:
+            Good
+
+            ================
+
+            
+            User:
+            Eddy
+
+            Question:
+            who are you?
+
+            Rating:
+            Good
+
+            ================
+
+            
+            User:
+            Bels
+
+            Question:
+            who are you
+
+            Rating:
+            Good
+
+            ================
+
+            
+            User:
+            Bels
+
+            Question:
+            Unaweza kuniongoza namna ya kuregister course UDSM?
+
+            Rating:
+            Average
+
+            ================
+
+            
+            User:
+            Bels
+
+            Question:
+            Wewe ni nani?
+
+            Rating:
+            Poor
+
+            ================
+
+            
+            User:
+            Bels
+
+            Question:
+            Tell me about library services offered at the university
+
+            Rating:
+            Average
+
+            ================
+
+            
+            User:
+            Bels
+
+            Question:
+            where can i find the student portal
+
+            Rating:
+            Good
+
+            ================
+
+            
+            User:
+            Bels
+
+            Question:
+            How to get my academic transcript
+
+            Rating:
+            Good
+
+            ================
+
+            
+            User:
+            Bels
+
+            Question:
+            which university are you from?
+
+            Rating:
+            Good
+
+            ================
+
+            
+            User:
+            Bels
+
+            Question:
+            which university are you from?
+
+            Rating:
+            Good
+
+            ================
+
+            
+            User:
+            Bels
+
+            Question:
+            Aibu utaona wewe
+
+            Rating:
+            Average
+
+            ================
+
+            
+            User:
+            Main
+
+            Question:
+            what library services are provided at UDSM
+
+            Rating:
+            Average
+
+            ================
+
+            

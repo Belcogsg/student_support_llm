@@ -1,0 +1,18 @@
+{
+    "Bels": {
+        "password": "admin@1234",
+        "role": "student"
+    },
+    "Jo": {
+        "password": "jongo0001",
+        "role": "student"
+    },
+    "Eddy": {
+        "password": "mainda2000",
+        "role": "student"
+    },
+    "Main": {
+        "password": "main1234",
+        "role": "student"
+    }
+}
