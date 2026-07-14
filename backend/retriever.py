@@ -3,7 +3,7 @@ from pathlib import Path
 FAQ_FILE = Path(__file__).parent / "university_faq.txt"
 
 def retrieve_context(question):
-    with open("university_faq.txt", "r", encoding="utf-8") as file:
+    with open(FAQ_FILE, "r", encoding="utf-8") as file:
         knowledge = file.readlines()
 
     question_words = set(question.lower().split())

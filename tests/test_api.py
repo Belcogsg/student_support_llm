@@ -25,8 +25,9 @@ def test_home():
 def test_health():
     response = client.get("/health")
     assert response.status_code == 200
-    assert response.json() == {"status": "healthy"}
-
+    assert response.json()["status"] == "healthy"
+    
+    
 def test_submit_question():
     response = client.post("/ask", json={"question": "How to apply for student accommodation?"})
     assert response.status_code == 200

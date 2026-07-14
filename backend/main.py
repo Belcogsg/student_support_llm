@@ -1,10 +1,10 @@
-from retriever import retrieve_context
+from backend.retriever import retrieve_context
 from fastapi import FastAPI
 from fastapi import HTTPException
-from pydantic import BaseModel
-from config import APP_NAME, LOG_FILE
-from llm_client import ask_llm
-from auth import register_user, authenticate
+from pydantic import BaseModel, Field
+from backend.config import APP_NAME, LOG_FILE
+from backend.llm_client import ask_llm
+from backend.auth import register_user, authenticate
 import requests
 import logging
 
@@ -14,7 +14,8 @@ logging.basicConfig(filename=LOG_FILE, level=logging.INFO, format="%(asctime)s |
 app = FastAPI(title=APP_NAME, description="An API for University Student Support Assistant using LLM", version="1.0.0")
 
 class QuestionRequest(BaseModel):
-    question: str
+    question: str = Field(min_length=1)
+    
 
 @app.get("/")
 def home():
