@@ -195,15 +195,3 @@ Potential enhancements include:
 * Multi-language support
 * Speech-to-text and text-to-speech
 * Cloud deployment
-
-
-# Authors
-**Group Members**
-1. Catherine Mwita
-2. Jolyine Ringo
-3. Belva Kitaja
-4. Rebecca Lengesia
-5. Edgar Mainda
-
-
-This project was developed for academic purposes as part of a university coursework assignment.
