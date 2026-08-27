@@ -215,3 +215,39 @@
             ================
 
             
+            User:
+            Beldon
+
+            Question:
+            when is the next semester start?
+
+            Rating:
+            Good
+
+            ================
+
+            
+            User:
+            Beldon
+
+            Question:
+            how to register for courses
+
+            Rating:
+            Good
+
+            ================
+
+            
+            User:
+            Beldon
+
+            Question:
+            what is the fee structure for undergraduate courses
+
+            Rating:
+            Good
+
+            ================
+
+            

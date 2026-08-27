@@ -1,0 +1,17 @@
+{
+  "course_registration": {
+    "system": "ARIS 3.0 (Academic Registration Information System)",
+    "portal_url": "https://aris3.udsm.ac.tz",
+    "steps": [
+      "1. Open your web browser and go to the official portal: https://aris3.udsm.ac.tz",
+      "2. Log in using your UDSM Registration Number / Username and Password.",
+      "3. Navigate to the left side menu and click on 'Course Registration'.",
+      "4. Select the active Academic Year and Semester.",
+      "5. Click 'Add Courses' to view the list of Core (compulsory) and Elective subjects for your degree program.",
+      "6. Select your respective core courses and chosen electives for the semester.",
+      "7. Click the 'Save / Register' button to submit your selections.",
+      "8. Print or download your registered Course Form (Form No. 1) for your department's records."
+    ],
+    "prerequisites": "Ensure you have paid the required tuition fee installment and completed medical registration, otherwise course registration may be locked on ARIS."
+  }
+}

@@ -1,56 +1,69 @@
-import os
+import json
 from pathlib import Path
-from langchain_community.document_loaders import PyPDFLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_openai import OpenAIEmbeddings
-from langchain_community.vectorstores import FAISS
+from pypdf import PdfReader
+
+BASE_DIR = Path(__file__).parent.parent
+PDF_FILE = BASE_DIR / "docs" / "UDSM_Almanac_2025_26.pdf"
+ARIS_FILE = Path(__file__).parent / "docs" / "aris_guide.json"
+
+if not PDF_FILE.exists():
+    PDF_FILE = BASE_DIR / "docs" / "UDSM_Almanac_2025_26"
 
 
-BACKEND_DIR = Path(__file__).parent
-PDF_FILE = BACKEND_DIR / "almanac.pdf"
-DB_DIR = BACKEND_DIR / "faiss_index"
-
-def load_or_create_vectorstore():
-    """Builds a FAISS index from the PDF if it doesn't exist, or loads existing index from disk."""
-    embeddings = OpenAIEmbeddings()
-
+def get_aris_context(question: str) -> str:
+    """Reads structured ARIS portal guidance if the question asks about portal processes."""
+    if not ARIS_FILE.exists():
+        return ""
     
-    if DB_DIR.exists():
-        return FAISS.load_local(
-            str(DB_DIR), 
-            embeddings, 
-            allow_dangerous_deserialization=True
-        )
-
-    if not PDF_FILE.exists():
-        raise FileNotFoundError(f"Almanac file not found at: {PDF_FILE}")
-
+    with open(ARIS_FILE, "r", encoding="utf-8") as f:
+        aris_data = json.load(f)
+        
+    q_lower = question.lower()
     
-    loader = PyPDFLoader(str(PDF_FILE))
-    documents = loader.load()
+    if any(k in q_lower for k in ["register", "course", "aris", "portal", "add class"]):
+        reg = aris_data.get("course_registration", {})
+        steps = "\n".join(reg.get("steps", []))
+        
+        return f"[ARIS 3.0 Guide]\nSystem: {reg.get('system')}\nURL: {reg.get('portal_url')}\nPrerequisites: {reg.get('prerequisites')}\nSteps:\n{steps}"
+        
+    return ""
 
-    # here im splitting the document into searchable chunks
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=600, chunk_overlap=100)
-    chunks = text_splitter.split_documents(documents)
-
-    # creating the FAISS vector database and saving to disk
-    vectorstore = FAISS.from_documents(chunks, embeddings)
-    vectorstore.save_local(str(DB_DIR))
-    
-    return vectorstore
-
-
-_vectorstore = load_or_create_vectorstore()
-_retriever = _vectorstore.as_retriever(search_kwargs={"k": 4})
 
 def retrieve_context(question: str) -> str:
-    """Retrieves top 4 relevant passages from the UDSM PDF for a given question."""
-    docs = _retriever.invoke(question)
-    
-    # Combines content with page numbers for transparency
+    """Combines ARIS system guide with Almanac PDF search."""
     context_blocks = []
-    for doc in docs:
-        page_num = doc.metadata.get("page", 0) + 1
-        context_blocks.append(f"[Page {page_num}]\n{doc.page_content}")
-
+    
+    # checking aris guide
+    aris_info = get_aris_context(question)
+    
+    if aris_info:
+        context_blocks.append(aris_info)
+        
+    # Checking almanac
+    if PDF_FILE.exists():
+        reader = PdfReader(PDF_FILE)
+        ignore_words = {"when", "does", "the", "is", "a", "an", "of", "in", "to", "for", "what", "on", "how"}
+        keywords = [w.lower() for w in question.split() if w.lower() not in ignore_words]
+        
+        matched_pages = []
+        for page_idx, page in enumerate(reader.pages):
+            text = page.extract_text() or ""
+            text_lower = text.lower()
+            matches = sum(1 for kw in keywords if kw in text_lower)
+            if matches > 0:
+                matched_pages.append((matches, page_idx + 1, text))
+                
+        matched_pages.sort(key=lambda x: x[0], reverse=True)
+        top_matches = matched_pages[:2]
+        
+        for score, page_num, text in top_matches:
+            context_blocks.append(f"[Almanac Page {page_num}]\n{text.strip()}")
+        
+    if not PDF_FILE.exists():
+        print(f"[ERROR] PDF file not found at: {PDF_FILE.resolve()}")
+        return ""
+    
+    if not context_blocks:
+        return "No specific UDSM guides or almanac pages found."
+        
     return "\n\n---\n\n".join(context_blocks)
