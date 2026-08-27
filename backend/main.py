@@ -1,10 +1,10 @@
-from backend.retriever import retrieve_context
+from retriever import retrieve_context
 from fastapi import FastAPI
 from fastapi import HTTPException
 from pydantic import BaseModel, Field
-from backend.config import APP_NAME, LOG_FILE
-from backend.llm_client import ask_llm
-from backend.auth import register_user, authenticate
+from config import APP_NAME, LOG_FILE
+from llm_client import ask_llm
+from auth import register_user, authenticate
 import requests
 import logging
 

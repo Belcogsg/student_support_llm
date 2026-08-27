@@ -14,5 +14,9 @@
     "Main": {
         "password": "main1234",
         "role": "student"
+    },
+    "Beldon": {
+        "password": "yd@1234",
+        "role": "student"
     }
 }

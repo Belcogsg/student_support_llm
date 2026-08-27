@@ -1,6 +1,6 @@
 import requests
-from backend.config import OLLAMA_URL, MODEL_NAME
-from backend.retriever import retrieve_context
+from config import OLLAMA_URL, MODEL_NAME
+from retriever import retrieve_context
 
 
 def ask_llm(question):
